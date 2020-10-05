@@ -9,6 +9,21 @@ const port = process.env.PORT || 8085;
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 
+const corsOpts = {
+  origin: '*',
+
+  methods: [
+    'GET',
+    'POST',
+  ],
+
+  allowedHeaders: [
+    'Content-Type',
+  ],
+};
+
+app.use(cors(corsOpts));
+
 app.post("/register", (req, res) => {
   const data = JSON.stringify(req.body);
   let dataFromApi = "";
